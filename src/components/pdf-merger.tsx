@@ -1,16 +1,20 @@
 "use client";
+
 import { useState, useRef, ChangeEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PDFDocument } from "pdf-lib";
-import { Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Card, CardContent } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { FileList } from "@/components/file-list";
 
 export function PdfMerger() {
   const [files, setFiles] = useState<File[]>([]);
   const [mergedUrl, setMergedUrl] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const t = useTranslations();
+  const [isMerging, setIsMerging] = useState(false);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.target.files;
@@ -40,26 +44,27 @@ export function PdfMerger() {
 
   const handleMerge = async () => {
     if (files.length < 2) return;
-
+    setIsMerging(true);
     try {
       const mergedPdf = await PDFDocument.create();
 
       for (const file of files) {
-        const bytes = await file.arrayBuffer();
-        const pdf = await PDFDocument.load(bytes);
-        const copiedPages = await mergedPdf.copyPages(
-          pdf,
-          pdf.getPageIndices()
-        );
-        copiedPages.forEach((page) => mergedPdf.addPage(page));
+        const fileBuffer = await file.arrayBuffer();
+        const pdf = await PDFDocument.load(fileBuffer);
+        const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+        pages.forEach((page) => mergedPdf.addPage(page));
       }
 
-      const mergedBytes = await mergedPdf.save();
-      const blob = new Blob([mergedBytes], { type: "application/pdf" });
-      setMergedUrl(URL.createObjectURL(blob));
+      const mergedPdfBytes = await mergedPdf.save();
+      const blob = new Blob([mergedPdfBytes], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
+
+      setMergedUrl(url);
     } catch (error) {
-      console.error(t("errors.mergeError"), error);
+      console.error(error);
       alert(t("errors.mergeError"));
+    } finally {
+      setIsMerging(false);
     }
   };
 
@@ -72,10 +77,9 @@ export function PdfMerger() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 gap-8">
-      <h1 className="text-2xl font-bold mb-4">{t("title")}</h1>
-      <div className="w-full max-w-xs">
-        <div className="relative">
+    <div className="space-y-4 max-w-2xl mx-auto">
+      <Card>
+        <CardContent className="p-6">
           <div
             className="flex items-center justify-center w-full h-32 px-4 border-2 border-dashed rounded-lg bg-background hover:bg-accent/50 hover:text-accent-foreground transition-colors cursor-pointer"
             onClick={() => inputRef.current?.click()}
@@ -113,41 +117,42 @@ export function PdfMerger() {
           <p className="text-sm text-muted-foreground mt-2 text-center">
             {t("dropzone.hint")}
           </p>
-        </div>
-      </div>
-      <div className="flex flex-col gap-2 w-full max-w-xs">
-        {files.length > 0 && (
-          <ul className="text-sm list-disc pl-5">
-            {files.map((file, i) => (
-              <li key={i} className="flex items-center justify-between gap-2">
-                <span className="truncate">
-                  {file.name} ({(file.size / 1024).toFixed(1)} KB)
-                </span>
+        </CardContent>
+      </Card>
+
+      {files.length > 0 && (
+        <Card>
+          <CardContent className="p-6">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold">{t("fileList.title")}</h2>
                 <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => handleRemoveFile(i)}
-                  className="h-6 px-2"
+                  onClick={handleMerge}
+                  disabled={files.length < 2 || isMerging}
                 >
-                  <Trash2 className="h-4 w-4" />
+                  {isMerging ? t("buttons.merging") : t("buttons.merge")}
                 </Button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <Button
-        onClick={handleMerge}
-        disabled={files.length < 2}
-        className="w-full max-w-xs"
-      >
-        {t("buttons.merge")}
-      </Button>
+              </div>
+              <ScrollArea className="h-[200px]">
+                <FileList
+                  files={files.map((file, index) => ({
+                    name: file.name,
+                    size: file.size,
+                    index: index + 1,
+                  }))}
+                  onRemove={handleRemoveFile}
+                />
+              </ScrollArea>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {mergedUrl && (
         <Button
           onClick={handleDownload}
-          variant="secondary"
-          className="w-full max-w-xs"
+          variant="default"
+          className="w-full cursor-pointer"
         >
           {t("buttons.download")}
         </Button>

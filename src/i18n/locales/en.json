@@ -6,14 +6,29 @@
     "hint": "Select multiple PDF files (2 or more)"
   },
   "fileList": {
+    "title": "Files",
     "remove": "Remove"
   },
   "buttons": {
     "merge": "Merge PDFs",
+    "merging": "Merging...",
     "download": "Download Merged PDF"
   },
   "errors": {
     "selectPdf": "Please select PDF files.",
     "mergeError": "An error occurred while merging PDFs."
+  },
+  "PdfMerger": {
+    "dropzone": "Drag & drop PDF files here, or click to select",
+    "files": "Files",
+    "merge": "Merge PDFs",
+    "merging": "Merging...",
+    "buttons": {
+      "download": "Download"
+    },
+    "errors": {
+      "selectPdf": "Please select PDF files",
+      "mergeError": "An error occurred while merging PDFs"
+    }
   }
 }

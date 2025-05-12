@@ -6,14 +6,29 @@
     "hint": "複数のPDFファイルを選択してください（2つ以上）"
   },
   "fileList": {
+    "title": "ファイル一覧",
     "remove": "削除"
   },
   "buttons": {
     "merge": "PDFを結合",
+    "merging": "結合中...",
     "download": "結合PDFをダウンロード"
   },
   "errors": {
     "selectPdf": "PDFファイルを選択してください。",
     "mergeError": "PDFの結合中にエラーが発生しました。"
+  },
+  "PdfMerger": {
+    "dropzone": "PDFファイルをドラッグ＆ドロップするか、クリックして選択してください",
+    "files": "ファイル一覧",
+    "merge": "PDFを結合",
+    "merging": "結合中...",
+    "buttons": {
+      "download": "ダウンロード"
+    },
+    "errors": {
+      "selectPdf": "PDFファイルを選択してください",
+      "mergeError": "PDFの結合中にエラーが発生しました"
+    }
   }
 }
