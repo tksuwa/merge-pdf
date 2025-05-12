@@ -1,49 +1,64 @@
 "use client";
 
-import { useState, useRef, ChangeEvent } from "react";
+import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { PDFDocument } from "pdf-lib";
 import { useTranslations } from "next-intl";
+import { useDropzone } from "react-dropzone";
+import { PDFDocument } from "pdf-lib";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FileList } from "@/components/file-list";
+import { validateFilename, MAX_FILENAME_LENGTH } from "@/validate/filename";
+import { validatePdfFiles } from "@/validate/pdf";
 
 export function PdfMerger() {
+  const t = useTranslations();
   const [files, setFiles] = useState<File[]>([]);
   const [mergedUrl, setMergedUrl] = useState<string | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const t = useTranslations();
+  const [downloadFileName, setDownloadFileName] = useState("merged");
+  const [fileNameError, setFileNameError] = useState<string | null>(null);
   const [isMerging, setIsMerging] = useState(false);
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedFiles = e.target.files;
-    if (!selectedFiles || selectedFiles.length === 0) return;
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    setFiles((prev) => [...prev, ...acceptedFiles]);
+    setMergedUrl(null);
+  }, []);
 
-    const pdfFiles = Array.from(selectedFiles).filter(
-      (file) => file.type === "application/pdf"
-    );
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      "application/pdf": [".pdf"],
+    },
+  });
 
-    if (pdfFiles.length === 0) {
-      alert(t("errors.selectPdf"));
+  const handleRemoveFile = useCallback((index: number) => {
+    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+    setMergedUrl(null);
+  }, []);
+
+  const handleFileNameChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setDownloadFileName(value);
+
+      const validation = validateFilename(value);
+      if (!validation.isValid && validation.error) {
+        setFileNameError(t(validation.error, { max: MAX_FILENAME_LENGTH }));
+      } else {
+        setFileNameError(null);
+      }
+    },
+    [t]
+  );
+
+  const handleMerge = useCallback(async () => {
+    const validation = validatePdfFiles(files);
+    if (!validation.isValid) {
+      alert(t(validation.error!));
       return;
     }
 
-    setFiles((prevFiles) => [...prevFiles, ...pdfFiles]);
-    setMergedUrl(null);
-
-    if (inputRef.current) {
-      inputRef.current.value = "";
-    }
-  };
-
-  const handleRemoveFile = (index: number) => {
-    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
-    setMergedUrl(null);
-  };
-
-  const handleMerge = async () => {
-    if (files.length < 2) return;
     setIsMerging(true);
     try {
       const mergedPdf = await PDFDocument.create();
@@ -66,31 +81,29 @@ export function PdfMerger() {
     } finally {
       setIsMerging(false);
     }
-  };
+  }, [files, t]);
 
-  const handleDownload = () => {
-    if (!mergedUrl) return;
+  const handleDownload = useCallback(() => {
+    if (!mergedUrl || fileNameError) return;
     const a = document.createElement("a");
     a.href = mergedUrl;
-    a.download = "merged.pdf";
+    a.download = `${downloadFileName}.pdf`;
     a.click();
-  };
+  }, [mergedUrl, fileNameError, downloadFileName]);
 
   return (
     <div className="space-y-4 max-w-2xl mx-auto">
       <Card>
         <CardContent className="p-6">
           <div
-            className="flex items-center justify-center w-full h-32 px-4 border-2 border-dashed rounded-lg bg-background hover:bg-accent/50 hover:text-accent-foreground transition-colors cursor-pointer"
-            onClick={() => inputRef.current?.click()}
+            {...getRootProps()}
+            className={`flex items-center justify-center w-full h-32 px-4 border-2 border-dashed rounded-lg transition-colors cursor-pointer ${
+              isDragActive
+                ? "border-primary bg-primary/10"
+                : "border-muted hover:bg-accent/50 hover:text-accent-foreground"
+            }`}
           >
-            <Input
-              ref={inputRef}
-              type="file"
-              accept="application/pdf"
-              onChange={handleFileChange}
-              className="hidden"
-            />
+            <input {...getInputProps()} />
             <div className="flex flex-col items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -149,13 +162,30 @@ export function PdfMerger() {
       )}
 
       {mergedUrl && (
-        <Button
-          onClick={handleDownload}
-          variant="default"
-          className="w-full cursor-pointer"
-        >
-          {t("buttons.download")}
-        </Button>
+        <div className="space-y-4">
+          <div className="flex items-center gap-2">
+            <div className="flex-1 flex items-center gap-2">
+              <Input
+                value={downloadFileName}
+                onChange={handleFileNameChange}
+                placeholder="merged"
+                className="flex-1"
+              />
+              <span className="text-muted-foreground">.pdf</span>
+            </div>
+            <Button
+              onClick={handleDownload}
+              variant="default"
+              className="whitespace-nowrap"
+              disabled={!!fileNameError}
+            >
+              {t("buttons.download")}
+            </Button>
+          </div>
+          {fileNameError && (
+            <p className="text-sm text-destructive">{fileNameError}</p>
+          )}
+        </div>
       )}
     </div>
   );

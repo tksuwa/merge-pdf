@@ -13,4 +13,4 @@ export async function mergePdfs(files: File[]): Promise<string> {
   const mergedBytes = await mergedPdf.save();
   const blob = new Blob([mergedBytes], { type: "application/pdf" });
   return URL.createObjectURL(blob);
-} 
+}

@@ -16,7 +16,8 @@
   },
   "errors": {
     "selectPdf": "Please select PDF files.",
-    "mergeError": "An error occurred while merging PDFs."
+    "mergeError": "An error occurred while merging PDFs.",
+    "fileNameTooLong": "File name must be less than {max} characters."
   },
   "PdfMerger": {
     "dropzone": "Drag & drop PDF files here, or click to select",

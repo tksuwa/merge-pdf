@@ -16,7 +16,8 @@
   },
   "errors": {
     "selectPdf": "PDFファイルを選択してください。",
-    "mergeError": "PDFの結合中にエラーが発生しました。"
+    "mergeError": "PDFの結合中にエラーが発生しました。",
+    "fileNameTooLong": "ファイル名は{max}文字以内で入力してください。"
   },
   "PdfMerger": {
     "dropzone": "PDFファイルをドラッグ＆ドロップするか、クリックして選択してください",
