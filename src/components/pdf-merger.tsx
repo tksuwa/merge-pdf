@@ -74,33 +74,41 @@ export function PdfMerger() {
       <h1 className="text-2xl font-bold mb-4">PDF結合アプリ</h1>
       <div className="w-full max-w-xs">
         <div className="relative">
-          <div className="flex items-center justify-center w-full h-10 px-4 border rounded-md bg-background hover:bg-accent hover:text-accent-foreground">
+          <div
+            className="flex items-center justify-center w-full h-32 px-4 border-2 border-dashed rounded-lg bg-background hover:bg-accent/50 hover:text-accent-foreground transition-colors cursor-pointer"
+            onClick={() => inputRef.current?.click()}
+          >
             <Input
               ref={inputRef}
               type="file"
               accept="application/pdf"
               onChange={handleFileChange}
-              className="w-full opacity-0 absolute inset-0 [&::-webkit-file-upload-button]:hidden [&::file-selector-button]:hidden"
+              className="hidden"
             />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mr-2"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="17 8 12 3 7 8" />
-              <line x1="12" y1="3" x2="12" y2="15" />
-            </svg>
-            <span>PDFファイルを選択</span>
+            <div className="flex flex-col items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-muted-foreground"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+              <span className="text-sm font-medium">PDFファイルをドロップ</span>
+              <span className="text-xs text-muted-foreground">
+                またはクリックして選択
+              </span>
+            </div>
           </div>
-          <p className="text-sm text-muted-foreground mt-2">
+          <p className="text-sm text-muted-foreground mt-2 text-center">
             複数のPDFファイルを選択してください（2つ以上）
           </p>
         </div>
