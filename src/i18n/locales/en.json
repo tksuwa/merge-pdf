@@ -1,0 +1,19 @@
+{
+  "title": "PDF Merger",
+  "dropzone": {
+    "drop": "Drop PDF files here",
+    "click": "or click to select",
+    "hint": "Select multiple PDF files (2 or more)"
+  },
+  "fileList": {
+    "remove": "Remove"
+  },
+  "buttons": {
+    "merge": "Merge PDFs",
+    "download": "Download Merged PDF"
+  },
+  "errors": {
+    "selectPdf": "Please select PDF files.",
+    "mergeError": "An error occurred while merging PDFs."
+  }
+}

@@ -8,29 +8,27 @@ export function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="flex items-center gap-4 p-2 rounded-lg bg-muted/50">
-      <button
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+    <button
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className={cn(
+        "relative h-6 w-11 rounded-full transition-colors",
+        "bg-primary/20 hover:bg-primary/30",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      )}
+    >
+      <div
         className={cn(
-          "relative h-6 w-11 rounded-full transition-colors",
-          "bg-primary/20 hover:bg-primary/30",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          "absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-background transition-transform",
+          "flex items-center justify-center",
+          theme === "dark" ? "translate-x-5" : "translate-x-0"
         )}
       >
-        <div
-          className={cn(
-            "absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-background transition-transform",
-            "flex items-center justify-center",
-            theme === "dark" ? "translate-x-5" : "translate-x-0"
-          )}
-        >
-          {theme === "dark" ? (
-            <Moon className="h-3 w-3 text-muted-foreground" />
-          ) : (
-            <Sun className="h-3 w-3 text-muted-foreground" />
-          )}
-        </div>
-      </button>
-    </div>
+        {theme === "dark" ? (
+          <Moon className="h-3 w-3 text-muted-foreground" />
+        ) : (
+          <Sun className="h-3 w-3 text-muted-foreground" />
+        )}
+      </div>
+    </button>
   );
 }

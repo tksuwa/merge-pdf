@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { ThemeSwitch } from "./theme-switch";
 
 type Theme = "light" | "dark";
 
@@ -36,9 +35,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme: handleThemeChange }}>
-      <div className="flex justify-end">
-        <ThemeSwitch />
-      </div>
       {children}
     </ThemeContext.Provider>
   );

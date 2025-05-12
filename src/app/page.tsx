@@ -1,5 +1,5 @@
-import { PdfMerger } from "@/components/pdf-merger";
+import { redirect } from "next/navigation";
 
-export default function Page() {
-  return <PdfMerger />;
+export default function RootPage() {
+  redirect("/ja");
 }

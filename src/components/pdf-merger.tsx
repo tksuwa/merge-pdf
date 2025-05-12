@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PDFDocument } from "pdf-lib";
 import { Trash2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function PdfMerger() {
   const [files, setFiles] = useState<File[]>([]);
   const [mergedUrl, setMergedUrl] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const t = useTranslations();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.target.files;
@@ -19,7 +21,7 @@ export function PdfMerger() {
     );
 
     if (pdfFiles.length === 0) {
-      alert("PDFファイルを選択してください。");
+      alert(t("errors.selectPdf"));
       return;
     }
 
@@ -56,8 +58,8 @@ export function PdfMerger() {
       const blob = new Blob([mergedBytes], { type: "application/pdf" });
       setMergedUrl(URL.createObjectURL(blob));
     } catch (error) {
-      console.error("PDFの結合中にエラーが発生しました:", error);
-      alert("PDFの結合中にエラーが発生しました。");
+      console.error(t("errors.mergeError"), error);
+      alert(t("errors.mergeError"));
     }
   };
 
@@ -71,7 +73,7 @@ export function PdfMerger() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 gap-8">
-      <h1 className="text-2xl font-bold mb-4">PDF結合アプリ</h1>
+      <h1 className="text-2xl font-bold mb-4">{t("title")}</h1>
       <div className="w-full max-w-xs">
         <div className="relative">
           <div
@@ -102,18 +104,18 @@ export function PdfMerger() {
                 <polyline points="17 8 12 3 7 8" />
                 <line x1="12" y1="3" x2="12" y2="15" />
               </svg>
-              <span className="text-sm font-medium">PDFファイルをドロップ</span>
+              <span className="text-sm font-medium">{t("dropzone.drop")}</span>
               <span className="text-xs text-muted-foreground">
-                またはクリックして選択
+                {t("dropzone.click")}
               </span>
             </div>
           </div>
           <p className="text-sm text-muted-foreground mt-2 text-center">
-            複数のPDFファイルを選択してください（2つ以上）
+            {t("dropzone.hint")}
           </p>
         </div>
       </div>
-      <div className="flex flex-col gap-2 w-full max-w-md">
+      <div className="flex flex-col gap-2 w-full max-w-xs">
         {files.length > 0 && (
           <ul className="text-sm list-disc pl-5">
             {files.map((file, i) => (
@@ -139,7 +141,7 @@ export function PdfMerger() {
         disabled={files.length < 2}
         className="w-full max-w-xs"
       >
-        PDFを結合
+        {t("buttons.merge")}
       </Button>
       {mergedUrl && (
         <Button
@@ -147,7 +149,7 @@ export function PdfMerger() {
           variant="secondary"
           className="w-full max-w-xs"
         >
-          結合PDFをダウンロード
+          {t("buttons.download")}
         </Button>
       )}
     </div>

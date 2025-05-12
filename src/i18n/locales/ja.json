@@ -1,0 +1,19 @@
+{
+  "title": "PDF結合アプリ",
+  "dropzone": {
+    "drop": "PDFファイルをドロップ",
+    "click": "またはクリックして選択",
+    "hint": "複数のPDFファイルを選択してください（2つ以上）"
+  },
+  "fileList": {
+    "remove": "削除"
+  },
+  "buttons": {
+    "merge": "PDFを結合",
+    "download": "結合PDFをダウンロード"
+  },
+  "errors": {
+    "selectPdf": "PDFファイルを選択してください。",
+    "mergeError": "PDFの結合中にエラーが発生しました。"
+  }
+}
