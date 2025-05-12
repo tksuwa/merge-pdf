@@ -1,42 +1,39 @@
-import { Inter } from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
+import { I18nProvider } from "@/i18n/provider";
 import { notFound } from "next/navigation";
-import { ThemeProvider } from "@/theme/theme-provider";
+import ja from "@/i18n/locales/ja.json";
+import en from "@/i18n/locales/en.json";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { ThemeSwitch } from "@/theme/theme-switch";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "ja" }];
-}
+const messages = {
+  ja,
+  en,
+};
 
 export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
   const { locale } = await params;
-  let messages;
-  try {
-    messages = (await import(`@/i18n/locales/${locale}.json`)).default;
-  } catch {
-    notFound();
-  }
+  if (!(locale in messages)) notFound();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <ThemeProvider>
-            <div className="fixed top-4 right-4 z-50">
-              <LanguageSwitcher />
-            </div>
-            {children}
-          </ThemeProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <I18nProvider
+      locale={locale}
+      messages={messages[locale as keyof typeof messages]}
+    >
+      <div lang={locale} className="min-h-screen">
+        <header className="fixed top-0 right-0 p-4 flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
+          </div>
+          <ThemeSwitch />
+        </header>
+        <main className="container mx-auto px-4 pt-16">{children}</main>
+      </div>
+    </I18nProvider>
   );
 }
