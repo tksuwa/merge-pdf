@@ -15,7 +15,7 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <>
+    <div className="flex items-center gap-2">
       <Button
         variant={locale === "ja" ? "default" : "outline"}
         size="sm"
@@ -30,6 +30,6 @@ export function LanguageSwitcher() {
       >
         English
       </Button>
-    </>
+    </div>
   );
 }
