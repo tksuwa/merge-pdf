@@ -1,5 +1,5 @@
 import { PdfMerger } from "@/components/pdf-merger";
 
-export default function Home() {
+export default function LocalePage() {
   return <PdfMerger />;
 }

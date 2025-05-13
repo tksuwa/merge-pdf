@@ -14,6 +14,17 @@ export default getRequestConfig(async ({ locale }) => {
 
   return {
     messages: messages[locale as keyof typeof messages],
-    locale
+    locale,
+    timeZone: 'Asia/Tokyo',
+    now: new Date(),
+    formats: {
+      dateTime: {
+        short: {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        }
+      }
+    }
   };
 }); 

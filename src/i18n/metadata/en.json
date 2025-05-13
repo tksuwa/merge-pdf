@@ -1,0 +1,30 @@
+{
+  "title": "PDF Merger - Merge PDFs Easily",
+  "description": "A completely free tool that allows you to merge multiple PDF files into a single file. All processing is done in your browser, ensuring privacy and security.",
+  "keywords": [
+    "PDF",
+    "merge",
+    "combine",
+    "online tool",
+    "PDF Merger",
+    "PDF editor",
+    "document",
+    "file conversion",
+    "PDF joiner",
+    "free tool",
+    "browser tool",
+    "secure",
+    "privacy"
+  ],
+  "og": {
+    "title": "PDF Merger - Merge PDFs Easily",
+    "description": "A completely free tool that allows you to merge multiple PDF files into a single file. All processing is done in your browser, ensuring privacy and security.",
+    "type": "website",
+    "locale": "en_US"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "PDF Merger - Merge PDFs Easily",
+    "description": "A completely free tool that allows you to merge multiple PDF files into a single file. All processing is done in your browser, ensuring privacy and security."
+  }
+}

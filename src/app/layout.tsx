@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/theme/theme-provider";
+import metadataJa from "@/i18n/metadata/ja.json";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -14,8 +15,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PDF Merge",
-  description: "an app that can merge two or more PDFs",
+  title: {
+    template: "%s | PDF Merger",
+    default: metadataJa.title,
+  },
+  description: metadataJa.description,
+  keywords: metadataJa.keywords,
+  openGraph: metadataJa.og,
+  twitter: metadataJa.twitter,
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
