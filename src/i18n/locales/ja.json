@@ -13,7 +13,7 @@
   "buttons": {
     "merge": "PDFを結合",
     "merging": "結合中...",
-    "download": "結合PDFをダウンロード"
+    "download": "ダウンロード"
   },
   "errors": {
     "selectPdf": "PDFファイルを選択してください。",

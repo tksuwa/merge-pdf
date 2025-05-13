@@ -13,7 +13,7 @@
   "buttons": {
     "merge": "Merge PDFs",
     "merging": "Merging...",
-    "download": "Download Merged PDF"
+    "download": "Download"
   },
   "errors": {
     "selectPdf": "Please select PDF files.",
