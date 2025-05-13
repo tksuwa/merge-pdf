@@ -2,8 +2,8 @@ import { I18nProvider } from "@/i18n/provider";
 import { notFound } from "next/navigation";
 import ja from "@/i18n/locales/ja.json";
 import en from "@/i18n/locales/en.json";
-import { LanguageSwitcher } from "@/components/language-switcher";
-import { ThemeSwitch } from "@/theme/theme-switch";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 
 const messages = {
   ja,
@@ -25,14 +25,10 @@ export default async function LocaleLayout({
       locale={locale}
       messages={messages[locale as keyof typeof messages]}
     >
-      <div lang={locale} className="min-h-screen">
-        <header className="fixed top-0 right-0 p-4 flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <LanguageSwitcher />
-          </div>
-          <ThemeSwitch />
-        </header>
-        <main className="container mx-auto px-4 pt-16">{children}</main>
+      <div lang={locale} className="min-h-screen flex flex-col">
+        <Header />
+        <main className="container mx-auto px-4 flex-grow">{children}</main>
+        <Footer />
       </div>
     </I18nProvider>
   );
