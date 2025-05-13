@@ -1,5 +1,6 @@
 {
   "title": "PDF Merger",
+  "description": "A completely free tool that allows you to merge multiple PDF files into a single file. All processing is done in your browser, ensuring privacy and security.",
   "dropzone": {
     "drop": "Drop PDF files here",
     "click": "or click to select",
@@ -30,6 +31,8 @@
     "errors": {
       "selectPdf": "Please select PDF files",
       "mergeError": "An error occurred while merging PDFs"
-    }
+    },
+    "title": "PDF Merger",
+    "description": "A tool that allows you to merge multiple PDF files into a single file. All processing is done in your browser, ensuring privacy and security."
   }
 }
