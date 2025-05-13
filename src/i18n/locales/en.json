@@ -34,5 +34,32 @@
     },
     "title": "PDF Merger",
     "description": "A tool that allows you to merge multiple PDF files into a single file. All processing is done in your browser, ensuring privacy and security."
+  },
+  "disclaimer": {
+    "lastUpdated": "Last Updated: 2025-05-13",
+    "about": {
+      "title": "About This App",
+      "description1": "A free PDF merging tool that runs entirely in your browser.",
+      "description2": "No server communication is required, all processing is done locally on your device."
+    },
+    "privacy": {
+      "title": "Files and Privacy",
+      "description1": "Uploaded PDFs are only stored in your device's memory or browser's temporary storage and are never sent externally.",
+      "description2": "You can minimize traces by clearing the cache after use or using incognito mode."
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "description1": "We make no guarantees regarding the operation or accuracy and safety of the merged results.",
+      "description2": "Please use at your own risk. Always backup important files before trying."
+    },
+    "damages": {
+      "title": "Regarding Damages",
+      "description": "The author is not liable for any losses or damages (including data loss and lost profits) arising from the use or inability to use this application."
+    },
+    "updates": {
+      "title": "Updates and Termination",
+      "description": "Features may be added, modified, or discontinued without notice. Please check the GitHub repository or public page for the latest information."
+    },
+    "close": "Close"
   }
 }
