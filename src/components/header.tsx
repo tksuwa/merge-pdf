@@ -8,7 +8,7 @@ export function Header() {
       <div className="flex items-center gap-4">
         <LanguageSwitcher />
         <ThemeSwitch />
-        <nav>
+        <nav className="flex items-center gap-2">
           <GithubLink />
         </nav>
       </div>

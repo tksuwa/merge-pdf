@@ -4,7 +4,7 @@ export function GithubLink() {
       href="https://github.com/tksuwa/merge-pdf"
       target="_blank"
       rel="noopener noreferrer"
-      className="p-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
+      className="inline-block text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
       aria-label="GitHubリポジトリ"
     >
       <svg
