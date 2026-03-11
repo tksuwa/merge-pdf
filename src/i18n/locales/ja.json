@@ -4,34 +4,51 @@
   "dropzone": {
     "drop": "PDFファイルをドロップ",
     "click": "またはクリックして選択",
-    "hint": "複数のPDFファイルを選択してください（2つ以上）"
+    "hint": "PDFファイルを1つ以上選択してください"
   },
   "fileList": {
     "title": "ファイル一覧",
-    "remove": "削除"
+    "remove": "削除",
+    "editHint": "「リスト」でファイル単位の並び替え、「詳細」でページ内の並び替えと回転ができます。"
   },
   "buttons": {
     "merge": "PDFを結合",
     "merging": "結合中...",
-    "download": "ダウンロード"
+    "cancel": "キャンセル",
+    "download": "ダウンロード",
+    "save": "保存"
   },
   "errors": {
-    "selectPdf": "PDFファイルを選択してください。",
+    "selectPdf": "PDFファイルを1つ以上選択してください。",
     "mergeError": "PDFの結合中にエラーが発生しました。",
-    "fileNameTooLong": "ファイル名は{max}文字以内で入力してください。"
+    "fileNameTooLong": "ファイル名は{max}文字以内で入力してください。",
+    "fileNameEmpty": "ファイル名を入力してください。",
+    "fileNameForbiddenChars": "ファイル名に使用できない文字が含まれています。",
+    "totalSizeExceeded": "合計ファイルサイズが50MBを超えています。",
+    "notPdf": "PDFファイルではありません。",
+    "encrypted": "暗号化されたPDFは処理できません。",
+    "corrupted": "破損したPDFファイルです。",
+    "totalPagesExceeded": "合計ページ数が上限（{max}ページ）を超えています。",
+    "fileReadError": "ファイルの読み込みに失敗しました。再選択してください。"
   },
-  "PdfMerger": {
-    "dropzone": "PDFファイルをドラッグ＆ドロップするか、クリックして選択してください",
-    "files": "ファイル一覧",
-    "merge": "PDFを結合",
-    "merging": "結合中...",
-    "buttons": {
-      "download": "ダウンロード"
-    },
-    "errors": {
-      "selectPdf": "PDFファイルを選択してください",
-      "mergeError": "PDFの結合中にエラーが発生しました"
-    }
+  "viewMode": {
+    "file": "ファイル一覧",
+    "page": "ページ一覧",
+    "list": "リスト",
+    "detail": "詳細"
+  },
+  "warnings": {
+    "nearSizeLimit": "合計サイズが45MBを超えています。50MBを超えるとファイルを追加できなくなります。",
+    "formFieldsLost": "結合時にフォームフィールドとブックマークは保持されません。"
+  },
+  "aria": {
+    "dragToReorder": "ドラッグで並び替え",
+    "preview": "プレビュー",
+    "exclude": "除外",
+    "include": "含める",
+    "rotateLeft": "左に回転",
+    "rotateRight": "右に回転",
+    "closePreview": "プレビューを閉じる"
   },
   "disclaimer": {
     "lastUpdated": "最終更新：2025-05-13",

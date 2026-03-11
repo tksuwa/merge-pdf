@@ -4,36 +4,51 @@
   "dropzone": {
     "drop": "Drop PDF files here",
     "click": "or click to select",
-    "hint": "Select multiple PDF files (2 or more)"
+    "hint": "Select one or more PDF files"
   },
   "fileList": {
     "title": "Files",
-    "remove": "Remove"
+    "remove": "Remove",
+    "editHint": "Use List for file reordering, and Details for page reordering and rotation."
   },
   "buttons": {
     "merge": "Merge PDFs",
     "merging": "Merging...",
-    "download": "Download"
+    "cancel": "Cancel",
+    "download": "Download",
+    "save": "Save"
   },
   "errors": {
-    "selectPdf": "Please select PDF files.",
+    "selectPdf": "Please select at least one PDF file.",
     "mergeError": "An error occurred while merging PDFs.",
-    "fileNameTooLong": "File name must be less than {max} characters."
+    "fileNameTooLong": "File name must be less than {max} characters.",
+    "fileNameEmpty": "Please enter a file name.",
+    "fileNameForbiddenChars": "File name contains forbidden characters.",
+    "totalSizeExceeded": "Total file size exceeds 50MB.",
+    "notPdf": "This is not a PDF file.",
+    "encrypted": "Encrypted PDFs cannot be processed.",
+    "corrupted": "This PDF file is corrupted.",
+    "totalPagesExceeded": "Total page count exceeds the limit ({max} pages).",
+    "fileReadError": "Failed to read the file. Please re-select it."
   },
-  "PdfMerger": {
-    "dropzone": "Drag & drop PDF files here, or click to select",
-    "files": "Files",
-    "merge": "Merge PDFs",
-    "merging": "Merging...",
-    "buttons": {
-      "download": "Download"
-    },
-    "errors": {
-      "selectPdf": "Please select PDF files",
-      "mergeError": "An error occurred while merging PDFs"
-    },
-    "title": "PDF Merger",
-    "description": "A tool that allows you to merge multiple PDF files into a single file. All processing is done in your browser, ensuring privacy and security."
+  "viewMode": {
+    "file": "File list",
+    "page": "Page list",
+    "list": "List",
+    "detail": "Details"
+  },
+  "warnings": {
+    "nearSizeLimit": "Total size exceeds 45MB. Files cannot be added once it exceeds 50MB.",
+    "formFieldsLost": "Form fields and bookmarks are not preserved during merging."
+  },
+  "aria": {
+    "dragToReorder": "Drag to reorder",
+    "preview": "Preview",
+    "exclude": "Exclude",
+    "include": "Include",
+    "rotateLeft": "Rotate left",
+    "rotateRight": "Rotate right",
+    "closePreview": "Close preview"
   },
   "disclaimer": {
     "lastUpdated": "Last Updated: 2025-05-13",

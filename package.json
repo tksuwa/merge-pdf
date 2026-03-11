@@ -6,9 +6,14 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src/",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "postinstall": "cp node_modules/pdfjs-dist/build/pdf.worker.min.mjs public/pdf.worker.min.mjs"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
     "@radix-ui/react-scroll-area": "^1.2.8",
     "@radix-ui/react-slot": "^1.2.2",
     "@radix-ui/react-switch": "^1.2.4",
@@ -18,6 +23,7 @@
     "next": "16.1.5",
     "next-intl": "^4.1.0",
     "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^5.5.207",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.8",
@@ -26,13 +32,18 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^5.1.4",
     "eslint": "^9",
-    "eslint-config-next": "15.3.2",
+    "eslint-config-next": "^16.1.5",
+    "jsdom": "^28.1.0",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.2.9",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.0.18"
   }
 }
