@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import { X, ZoomIn, ZoomOut, RotateCw, RotateCcw } from "lucide-react";
 import { renderThumbnail } from "@/hooks/usePdfThumbnail";
 import type { PdfPage, PdfFile } from "@/types/pdf";
@@ -20,6 +21,7 @@ export function PagePreviewDialog({
   dispatch,
   onClose,
 }: PagePreviewDialogProps) {
+  const t = useTranslations();
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [imageNaturalSize, setImageNaturalSize] = useState<{
     width: number;
@@ -30,15 +32,25 @@ export function PagePreviewDialog({
 
   useEffect(() => {
     dialogRef.current?.showModal();
-    setImageNaturalSize(null);
 
     let cancelled = false;
-    file.file.arrayBuffer().then((buffer) => {
-      if (cancelled) return;
-      renderThumbnail(buffer, page.originalIndex, 800).then((url) => {
-        if (!cancelled) setImageUrl(url);
+    file.file
+      .arrayBuffer()
+      .then((buffer) => {
+        if (cancelled) return;
+        return renderThumbnail(buffer, page.originalIndex, 800).then((url) => {
+          if (!cancelled) {
+            setImageNaturalSize(null);
+            setImageUrl(url);
+          }
+        });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setImageNaturalSize(null);
+          setImageUrl(null);
+        }
       });
-    });
 
     return () => {
       cancelled = true;
@@ -106,7 +118,7 @@ export function PagePreviewDialog({
                   direction: "left",
                 })
               }
-              aria-label="Rotate left"
+              aria-label={t("aria.rotateLeft")}
             >
               <RotateCcw className="h-4 w-4" />
             </Button>
@@ -121,7 +133,7 @@ export function PagePreviewDialog({
                   direction: "right",
                 })
               }
-              aria-label="Rotate right"
+              aria-label={t("aria.rotateRight")}
             >
               <RotateCw className="h-4 w-4" />
             </Button>
@@ -153,7 +165,7 @@ export function PagePreviewDialog({
               size="icon"
               className="h-8 w-8 bg-muted/70 text-foreground hover:bg-muted"
               onClick={onClose}
-              aria-label="Close preview"
+              aria-label={t("aria.closePreview")}
             >
               <X className="h-4 w-4" />
             </Button>

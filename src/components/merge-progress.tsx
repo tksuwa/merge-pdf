@@ -27,7 +27,13 @@ export function MergeProgress({
           {t("buttons.cancel")}
         </Button>
       </div>
-      <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+      <div
+        className="h-2 w-full bg-muted rounded-full overflow-hidden"
+        role="progressbar"
+        aria-valuenow={percent}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      >
         <div
           className="h-full bg-primary transition-all duration-300 rounded-full"
           style={{ width: `${percent}%` }}

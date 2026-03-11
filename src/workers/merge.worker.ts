@@ -33,6 +33,16 @@ self.onmessage = async (e: MessageEvent<WorkerMergeRequest>) => {
       (sum, f) => sum + f.pageIndices.length,
       0
     );
+
+    if (totalPages === 0) {
+      self.postMessage({
+        type: "error",
+        errorKey: "errors.selectPdf",
+        message: "No pages to merge",
+      } satisfies WorkerMessage);
+      return;
+    }
+
     let processedPages = 0;
 
     for (const fileData of files) {

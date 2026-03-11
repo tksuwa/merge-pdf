@@ -41,20 +41,14 @@
     "nearSizeLimit": "Total size exceeds 45MB. Files cannot be added once it exceeds 50MB.",
     "formFieldsLost": "Form fields and bookmarks are not preserved during merging."
   },
-  "PdfMerger": {
-    "dropzone": "Drag & drop PDF files here, or click to select",
-    "files": "Files",
-    "merge": "Merge PDFs",
-    "merging": "Merging...",
-    "buttons": {
-      "download": "Download"
-    },
-    "errors": {
-      "selectPdf": "Please select at least one PDF file",
-      "mergeError": "An error occurred while merging PDFs"
-    },
-    "title": "PDF Merger",
-    "description": "A tool that allows you to merge multiple PDF files into a single file. All processing is done in your browser, ensuring privacy and security."
+  "aria": {
+    "dragToReorder": "Drag to reorder",
+    "preview": "Preview",
+    "exclude": "Exclude",
+    "include": "Include",
+    "rotateLeft": "Rotate left",
+    "rotateRight": "Rotate right",
+    "closePreview": "Close preview"
   },
   "disclaimer": {
     "lastUpdated": "Last Updated: 2025-05-13",

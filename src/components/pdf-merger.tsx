@@ -146,8 +146,8 @@ export function PdfMerger() {
       // Show warning if near size limit
       if (sizeValidation.warning && invalidFiles.length === 0) {
         dispatch({
-          type: "SET_MERGE_JOB",
-          job: { status: "error", errorKey: sizeValidation.warning },
+          type: "SET_WARNING",
+          warningKey: sizeValidation.warning,
         });
       }
     },
@@ -299,6 +299,14 @@ export function PdfMerger() {
             </div>
           )}
 
+          {state.warningKey && !hasError && (
+            <div className="rounded-lg border border-yellow-500/50 bg-yellow-500/10 p-3">
+              <p className="text-sm text-yellow-700 dark:text-yellow-400">
+                {t(state.warningKey)}
+              </p>
+            </div>
+          )}
+
           {state.files.length > 0 && (
             <Card>
               <CardContent className="p-6">
@@ -317,7 +325,7 @@ export function PdfMerger() {
                           onClick={() =>
                             dispatch({ type: "SET_VIEW_MODE", mode: "file" })
                           }
-                          aria-label={t("viewMode.file")}
+                          aria-label={t("viewMode.list")}
                         >
                           <List className="h-3.5 w-3.5" />
                           <span className="text-xs">{t("viewMode.list")}</span>
@@ -329,7 +337,7 @@ export function PdfMerger() {
                           onClick={() =>
                             dispatch({ type: "SET_VIEW_MODE", mode: "page" })
                           }
-                          aria-label={t("viewMode.page")}
+                          aria-label={t("viewMode.detail")}
                         >
                           <LayoutGrid className="h-3.5 w-3.5" />
                           <span className="text-xs">{t("viewMode.detail")}</span>
@@ -383,7 +391,7 @@ export function PdfMerger() {
                   <Input
                     value={state.outputFileName}
                     onChange={handleFileNameChange}
-                    placeholder="merged"
+                    placeholder=""
                     className="flex-1"
                   />
                   <span className="text-muted-foreground">.pdf</span>

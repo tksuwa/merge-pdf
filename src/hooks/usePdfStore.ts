@@ -13,6 +13,7 @@ export const initialState: PdfMergerState = {
     errorKey: null,
   },
   outputFileName: "merged",
+  warningKey: null,
 };
 
 export type PdfAction =
@@ -25,7 +26,8 @@ export type PdfAction =
   | { type: "TOGGLE_PAGE"; pageId: string }
   | { type: "ROTATE_PAGE"; pageId: string; direction: "left" | "right" }
   | { type: "REORDER_PAGES"; pageIds: string[] }
-  | { type: "SET_VIEW_MODE"; mode: "file" | "page" };
+  | { type: "SET_VIEW_MODE"; mode: "file" | "page" }
+  | { type: "SET_WARNING"; warningKey: string | null };
 
 function buildPageOrder(files: PdfFile[]): string[] {
   return files.flatMap((f) => f.pages.map((p) => p.id));
@@ -79,6 +81,7 @@ export function pdfReducer(
       return {
         ...state,
         mergeJob: { ...initialState.mergeJob },
+        warningKey: null,
       };
 
     case "TOGGLE_PAGE": {
@@ -109,6 +112,9 @@ export function pdfReducer(
 
     case "SET_VIEW_MODE":
       return { ...state, viewMode: action.mode };
+
+    case "SET_WARNING":
+      return { ...state, warningKey: action.warningKey };
 
     default:
       return state;

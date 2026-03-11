@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { useTranslations } from "next-intl";
 import { RotateCw, RotateCcw, Eye, EyeOff } from "lucide-react";
 import { PageThumbnail } from "@/components/page-thumbnail";
 import { PagePreviewDialog } from "@/components/page-preview-dialog";
@@ -40,6 +41,7 @@ function SortablePageCard({
   dispatch: React.Dispatch<PdfAction>;
   onPreview: (pageId: string) => void;
 }) {
+  const t = useTranslations();
   const {
     attributes,
     listeners,
@@ -71,7 +73,7 @@ function SortablePageCard({
         <button
           className="h-6 w-6 inline-flex items-center justify-center rounded bg-black/60 text-white hover:bg-black/80"
           onClick={() => onPreview(page.id)}
-          aria-label="Preview"
+          aria-label={t("aria.preview")}
         >
           <Eye className="h-3 w-3" />
         </button>
@@ -83,7 +85,7 @@ function SortablePageCard({
               pageId: page.id,
             })
           }
-          aria-label={page.included ? "Exclude" : "Include"}
+          aria-label={page.included ? t("aria.exclude") : t("aria.include")}
         >
           {page.included ? (
             <EyeOff className="h-3 w-3" />
@@ -100,7 +102,7 @@ function SortablePageCard({
               direction: "left",
             })
           }
-          aria-label="Rotate left"
+          aria-label={t("aria.rotateLeft")}
         >
           <RotateCcw className="h-3 w-3" />
         </button>
@@ -113,7 +115,7 @@ function SortablePageCard({
               direction: "right",
             })
           }
-          aria-label="Rotate right"
+          aria-label={t("aria.rotateRight")}
         >
           <RotateCw className="h-3 w-3" />
         </button>

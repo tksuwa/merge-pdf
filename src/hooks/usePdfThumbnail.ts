@@ -59,6 +59,10 @@ export function usePdfThumbnail(
   const [loading, setLoading] = useState(false);
   const bufferRef = useRef<ArrayBuffer | null>(null);
 
+  useEffect(() => {
+    bufferRef.current = null;
+  }, [file]);
+
   const generate = useCallback(async () => {
     if (!file) return;
 

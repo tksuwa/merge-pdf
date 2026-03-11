@@ -18,9 +18,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const isDarkMode = window.matchMedia(
       "(prefers-color-scheme: dark)"
     ).matches;
-    setTheme(isDarkMode ? "dark" : "light");
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
+      // Synchronize React state with browser preference on mount
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- initial sync with external system
+      setTheme("dark");
     }
   }, []);
 

@@ -10,7 +10,7 @@ export function validateFilename(
   filename: string,
   maxLength: number = MAX_FILENAME_LENGTH
 ): FilenameValidationResult {
-  if (filename.length === 0) {
+  if (filename.trim().length === 0) {
     return { isValid: false, error: "errors.fileNameEmpty" };
   }
 

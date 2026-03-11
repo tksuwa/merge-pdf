@@ -64,7 +64,7 @@ function SortableFileItem({
     >
       <button
         className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-foreground"
-        aria-label="Drag to reorder"
+        aria-label={t("aria.dragToReorder")}
         {...attributes}
         {...listeners}
       >

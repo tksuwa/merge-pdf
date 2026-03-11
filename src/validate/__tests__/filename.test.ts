@@ -22,6 +22,12 @@ describe("validateFilename", () => {
     expect(result.error).toBe("errors.fileNameEmpty");
   });
 
+  it("スペースのみのファイル名を拒否する", () => {
+    const result = validateFilename("   ");
+    expect(result.isValid).toBe(false);
+    expect(result.error).toBe("errors.fileNameEmpty");
+  });
+
   it("OS禁止文字を拒否する", () => {
     const forbidden = ["/", "\\", ":", "*", "?", '"', "<", ">", "|"];
     for (const char of forbidden) {

@@ -35,4 +35,5 @@ export interface PdfMergerState {
   viewMode: "file" | "page";
   mergeJob: MergeJob;
   outputFileName: string;
+  warningKey: string | null;
 }
