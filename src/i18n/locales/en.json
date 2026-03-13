@@ -1,4 +1,8 @@
 {
+  "nav": {
+    "merge": "Merge PDF",
+    "pdfToImage": "PDF to Image"
+  },
   "title": "PDF Merger",
   "description": "A completely free tool that allows you to merge multiple PDF files into a single file. All processing is done in your browser, ensuring privacy and security.",
   "dropzone": {
@@ -27,6 +31,7 @@
     "totalSizeExceeded": "Total file size exceeds 50MB.",
     "notPdf": "This is not a PDF file.",
     "encrypted": "Encrypted PDFs cannot be processed.",
+    "emptyPdf": "This PDF has no pages.",
     "corrupted": "This PDF file is corrupted.",
     "totalPagesExceeded": "Total page count exceeds the limit ({max} pages).",
     "fileReadError": "Failed to read the file. Please re-select it."
@@ -48,7 +53,9 @@
     "include": "Include",
     "rotateLeft": "Rotate left",
     "rotateRight": "Rotate right",
-    "closePreview": "Close preview"
+    "closePreview": "Close preview",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "disclaimer": {
     "lastUpdated": "Last Updated: 2025-05-13",
@@ -76,5 +83,34 @@
       "description": "Features may be added, modified, or discontinued without notice. Please check the GitHub repository or public page for the latest information."
     },
     "close": "Close"
+  },
+  "pdfToImage": {
+    "title": "PDF to Image Converter",
+    "description": "Convert each page of a PDF file to images (PNG/JPEG/WebP) and download them all as a ZIP file. All processing is done in your browser, ensuring privacy and security.",
+    "dropzone": {
+      "drop": "Drop a PDF file here",
+      "click": "or click to select",
+      "hint": "Select a single PDF file"
+    },
+    "settings": {
+      "title": "Conversion Settings",
+      "format": "Output Format",
+      "quality": "Quality",
+      "scale": "Resolution Scale"
+    },
+    "buttons": {
+      "convert": "Convert to Images",
+      "converting": "Converting...",
+      "cancel": "Cancel",
+      "download": "Download ZIP"
+    },
+    "status": {
+      "converting": "Converting... Page {current}/{total}",
+      "done": "Conversion complete!"
+    },
+    "errors": {
+      "convertError": "An error occurred while converting the PDF.",
+      "unsupportedBrowser": "Your browser does not support OffscreenCanvas. Please use the latest version of Chrome, Edge, or Firefox."
+    }
   }
 }

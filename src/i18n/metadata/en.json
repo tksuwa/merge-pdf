@@ -26,5 +26,33 @@
     "card": "summary_large_image",
     "title": "PDF Merger - Merge PDFs Easily",
     "description": "A completely free tool that allows you to merge multiple PDF files into a single file. All processing is done in your browser, ensuring privacy and security."
+  },
+  "pdfToImage": {
+    "title": "PDF to Image - Convert PDF to Images",
+    "description": "A free tool to convert each page of a PDF file to PNG, JPEG, or WebP images. All processing is done in your browser, ensuring privacy and security.",
+    "keywords": [
+      "PDF",
+      "image converter",
+      "PNG",
+      "JPEG",
+      "WebP",
+      "PDF converter",
+      "online tool",
+      "free tool",
+      "browser tool",
+      "secure",
+      "privacy"
+    ],
+    "og": {
+      "title": "PDF to Image - Convert PDF to Images",
+      "description": "A free tool to convert each page of a PDF file to PNG, JPEG, or WebP images. All processing is done in your browser, ensuring privacy and security.",
+      "type": "website",
+      "locale": "en_US"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "PDF to Image - Convert PDF to Images",
+      "description": "A free tool to convert each page of a PDF file to PNG, JPEG, or WebP images. All processing is done in your browser, ensuring privacy and security."
+    }
   }
 }

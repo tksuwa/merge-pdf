@@ -67,6 +67,14 @@ export async function validatePdfFile(
     });
     const pageCount = pdf.getPageCount();
 
+    if (pageCount < 1) {
+      return {
+        status: "corrupted",
+        pageCount: 0,
+        errorKey: "errors.emptyPdf",
+      };
+    }
+
     return { status: "valid", pageCount };
   } catch (error: unknown) {
     // Check for encrypted PDF via pdf-lib error

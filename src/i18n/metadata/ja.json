@@ -26,5 +26,33 @@
     "card": "summary_large_image",
     "title": "PDF Merger - 簡単にPDFを結合",
     "description": "完全無料で利用できるPDF結合ツールです。複数のPDFファイルを1つのファイルに結合できます。ブラウザ上で完結するため、プライバシーを保護しながら安全に利用できます。"
+  },
+  "pdfToImage": {
+    "title": "PDF→画像変換 - PDFを画像に変換",
+    "description": "PDFファイルの各ページをPNG/JPEG/WebP画像に変換できる無料ツールです。ブラウザ上で完結するため、プライバシーを保護しながら安全に利用できます。",
+    "keywords": [
+      "PDF",
+      "画像変換",
+      "PNG",
+      "JPEG",
+      "WebP",
+      "PDF変換",
+      "オンラインツール",
+      "無料ツール",
+      "ブラウザツール",
+      "セキュア",
+      "プライバシー保護"
+    ],
+    "og": {
+      "title": "PDF→画像変換 - PDFを画像に変換",
+      "description": "PDFファイルの各ページをPNG/JPEG/WebP画像に変換できる無料ツールです。ブラウザ上で完結するため、プライバシーを保護しながら安全に利用できます。",
+      "type": "website",
+      "locale": "ja_JP"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "PDF→画像変換 - PDFを画像に変換",
+      "description": "PDFファイルの各ページをPNG/JPEG/WebP画像に変換できる無料ツールです。ブラウザ上で完結するため、プライバシーを保護しながら安全に利用できます。"
+    }
   }
 }
