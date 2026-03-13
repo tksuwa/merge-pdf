@@ -1,4 +1,8 @@
 {
+  "nav": {
+    "merge": "PDF結合",
+    "pdfToImage": "PDF→画像"
+  },
   "title": "PDF結合ツール",
   "description": "完全無料で利用できるPDF結合ツールです。複数のPDFファイルを1つのファイルに結合できます。ブラウザ上で完結するため、プライバシーを保護しながら安全に利用できます。",
   "dropzone": {
@@ -27,6 +31,7 @@
     "totalSizeExceeded": "合計ファイルサイズが50MBを超えています。",
     "notPdf": "PDFファイルではありません。",
     "encrypted": "暗号化されたPDFは処理できません。",
+    "emptyPdf": "このPDFにはページがありません。",
     "corrupted": "破損したPDFファイルです。",
     "totalPagesExceeded": "合計ページ数が上限（{max}ページ）を超えています。",
     "fileReadError": "ファイルの読み込みに失敗しました。再選択してください。"
@@ -48,7 +53,9 @@
     "include": "含める",
     "rotateLeft": "左に回転",
     "rotateRight": "右に回転",
-    "closePreview": "プレビューを閉じる"
+    "closePreview": "プレビューを閉じる",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる"
   },
   "disclaimer": {
     "lastUpdated": "最終更新：2025-05-13",
@@ -76,5 +83,34 @@
       "description": "予告なく機能を追加・変更・停止することがあります。最新情報は GitHub リポジトリまたは公開ページをご確認ください。"
     },
     "close": "閉じる"
+  },
+  "pdfToImage": {
+    "title": "PDF→画像変換ツール",
+    "description": "PDFファイルの各ページを画像（PNG/JPEG/WebP）に変換し、ZIP形式で一括ダウンロードできます。ブラウザ上で完結するため、プライバシーを保護しながら安全に利用できます。",
+    "dropzone": {
+      "drop": "PDFファイルをドロップ",
+      "click": "またはクリックして選択",
+      "hint": "PDFファイルを1つ選択してください"
+    },
+    "settings": {
+      "title": "変換設定",
+      "format": "出力形式",
+      "quality": "品質",
+      "scale": "解像度スケール"
+    },
+    "buttons": {
+      "convert": "画像に変換",
+      "converting": "変換中...",
+      "cancel": "キャンセル",
+      "download": "ZIPダウンロード"
+    },
+    "status": {
+      "converting": "変換中... ページ {current}/{total}",
+      "done": "変換完了！"
+    },
+    "errors": {
+      "convertError": "PDFの変換中にエラーが発生しました。",
+      "unsupportedBrowser": "お使いのブラウザはOffscreenCanvasに対応していません。Chrome、Edge、Firefox等の最新版をご利用ください。"
+    }
   }
 }

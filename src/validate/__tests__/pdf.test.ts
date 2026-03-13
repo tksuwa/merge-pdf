@@ -116,6 +116,19 @@ describe("validatePdfFile", () => {
     expect(result.errorKey).toBeUndefined();
   });
 
+  it("ページを持たないPDFを拒否する", async () => {
+    vi.spyOn(PDFDocument, "load").mockResolvedValue({
+      getPageCount: () => 0,
+    } as unknown as PDFDocument);
+
+    const file = createPdfFile("empty.pdf", 1024);
+
+    const result = await validatePdfFile(file);
+    expect(result.status).toBe("corrupted");
+    expect(result.pageCount).toBe(0);
+    expect(result.errorKey).toBe("errors.emptyPdf");
+  });
+
   it("破損PDFを検出する", async () => {
     // Starts with %PDF- but is otherwise garbage
     const pdfContent = "%PDF-1.4\ngarbage content that is not a valid pdf";

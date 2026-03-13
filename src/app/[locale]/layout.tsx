@@ -5,6 +5,7 @@ import en from "@/i18n/locales/en.json";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Metadata } from "next";
+import { SITE_URL, LOCALES } from "@/lib/constants";
 
 const messages = {
   ja,
@@ -21,6 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const metadata = (await import(`@/i18n/metadata/${locale}.json`)).default;
 
+  const languages: Record<string, string> = {};
+  for (const l of LOCALES) {
+    languages[l] = `${SITE_URL}/${l}`;
+  }
+
   return {
     title: {
       template: "%s | PDF Merger",
@@ -30,6 +36,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: metadata.keywords,
     openGraph: metadata.og,
     twitter: metadata.twitter,
+    alternates: {
+      canonical: `${SITE_URL}/${locale}`,
+      languages,
+    },
   };
 }
 
